@@ -1,0 +1,21 @@
+{
+    "Firefox": "firefox",
+    "Alacritty": "terminal",
+    "Emacs27": "file-code",
+    "Spotify": "spotify",
+    "calibre": "book",
+    "libreoffice-writer": "paperclip",
+    "Pomodoro": "clock-o",
+    "Org.gnome.Nautilus": "folder",
+    "Steam": "steam",
+    "Gnome-pomodo": "hourglass",
+    "discord": "discord",
+    "Code": "code",
+    "MPlayer": "video-camera",
+    "Anki": "language",
+    "Evince": "file",
+    "Microsoft Teams": "users",
+    "Google-chrome": "at",
+    "Wpsoffice": "sticky-note",
+    "Bitwarden": "lock"
+}

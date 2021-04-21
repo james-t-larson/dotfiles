@@ -1,0 +1,272 @@
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+#############
+#EXEC_ALWAYS#
+#############
+
+# pamac needs authentication software to work this is that software. I might change the location to .xinitrc 
+exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# needed for alsa, or to "upgrade to pulseaudio
+
+exec --no-startup-id volumeicon
+bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+#exec --no-startup-id pulseaudio
+#exec --no-startup-id pa-applet
+#bindsym $mod+Ctrl+m exec pavucontrol
+
+# start icon handler
+# run: sudo apt install fonts-font-awesome
+# or pacman -S ttf-font-awesome
+# and run: sudo pip3 install i3-workspace-names-daemon
+exec_always --no-startup-id exec i3-workspace-names-daemon
+
+# switch Caps and Escape
+exec_always --no-startup-id setxkbmap -option caps:swapescape
+
+# set up lockscreen
+# https://github.com/pavanjadhaw/betterlockscreen
+#exec_always --no-startup-id xautolock -time 15 -detectsleep -locker "betterlockscreen --lock blur" 
+
+# always mount external drive
+# exec_always --no-startup-id sudo mount /dev/sda1 /media/b217a20e-cb29-46cd-851d-e00f27cf4c3/
+
+# start power managment
+exec_always --no-startup-id xfce4-power-manager
+
+# apply the wallpaper on start 
+exec_always feh --randomize --bg-fill ~/Pictures/Wallpapers/*
+
+# always start redshift
+#exec_always --no-startup-id redshift -l 54.6:25.2
+
+# enable autotiling, to get this to work on new install, run pip3 install autotiling
+exec_always --no-startup-id autotiling
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango: monospace 10
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+
+#bindsym XF86AudioRaiseVminusolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+##################
+#GENERAL COMMANDS#
+##################
+
+# For changing volume
+bindsym $mod+Shift+plus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym $mod+Shift+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+
+# mutting
+bindsym $mod+Shift+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec alacritty 
+
+# start firefox
+bindsym $mod+b exec firefox
+
+#start nautilus
+bindsym $mod+n exec nautilus
+
+#start vscode
+bindsym $mod+c exec code
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi
+bindsym $mod+space exec rofi -show drun -theme dracula
+
+# change language to lithuanian and back
+bindsym $mod+Shift+s exec (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap lt || setxkbmap us
+
+# take a screen shot  -- add hour and minute taken
+# if you want to add a delay add the flag --delay 1 for one second
+bindsym Print exec scrot '%Y-%m-%d@%T.png' -e 'mv $f ~/Pictures/Screenshots/' 
+# bindsym Print exec gnome-screenshot
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 
+bindsym $mod+Shift+Pause exec --no-startup-id i3-msg exit, mode "default"
+
+# toggle window orientation for next window
+#bindsym $mod+t split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+ #change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+# set to workspaces and supports different languages
+bindcode Mod4+10 workspace number $ws1
+bindcode Mod4+11 workspace number $ws2
+bindcode Mod4+12 workspace number $ws3
+bindcode Mod4+13 workspace number $ws4
+bindcode Mod4+14 workspace number $ws5
+bindcode Mod4+15 workspace number $ws6
+bindcode Mod4+16 workspace number $ws7
+bindcode Mod4+17 workspace number $ws8
+bindcode Mod4+18 workspace number $ws9
+bindcode Mod4+19 workspace number $ws10
+
+#move focused container to workspace
+bindcode Mod4+Shift+10 move container to workspace number $ws1
+bindcode Mod4+Shift+11 move container to workspace number $ws2
+bindcode Mod4+Shift+12 move container to workspace number $ws3
+bindcode Mod4+Shift+13 move container to workspace number $ws4
+bindcode Mod4+Shift+14 move container to workspace number $ws5
+bindcode Mod4+Shift+15 move container to workspace number $ws6
+bindcode Mod4+Shift+16 move container to workspace number $ws7
+bindcode Mod4+Shift+17 move container to workspace number $ws8
+bindcode Mod4+Shift+18 move container to workspace number $ws9
+bindcode Mod4+Shift+19 move container to workspace number $ws10
+
+############
+####MODES###
+############
+
+bindsym $mod+Shift+End mode "$mode_system"
+set $mode_system (l)ock, (Shift+l)ogout, (s)uspend, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym Shift+l exec --no-startup-id i3-msg exit , mode "default"
+    bindsym l exec --no-startup-id dm-tool lock, mode "default"
+    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id shutdown now, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# resize window (you can also use the mouse for that)
+
+# bindsym $mod+s exec i3-msg resize set height 50 px && i3-msg focus up 
+
+# bindsym $mod+s exex i3-msg for_window [class="code"] resize shrink width 10px
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        bindsym $mod+h resize shrink width 10 px or 10 ppt
+        bindsym $mod+j resize grow height 10 px or 10 ppt
+        bindsym $mod+k resize shrink height 10 px or 10 ppt
+        bindsym $mod+l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+#######
+#THEME#
+#######
+
+# all windows will have a border of 4 pixels
+for_window [class=".*"] border pixel 4 
+
+gaps inner 10
+
+# Below is the Dracula theme for i3 
+# class                 border  bground text    indicator child_border
+client.focused          #8be9fd #8be9fd #8be9fd #8be9fd   #8be9fd
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+
+bar {
+  colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #8be9fd 
+
+    focused_workspace  #282A36 #bd93f9 #282A36
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    # binding_mode       #FF5555 #FF5555 #282a36
+  }
+
+  position top
+  status_command i3status -c ~/.i3/i3status.conf 
+  font pango:DejaVu Sans Mono, FontAwesome 10 
+
+}
+
