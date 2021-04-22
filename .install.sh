@@ -49,6 +49,13 @@ unzip ~/.icons/Dracula.zip
 # remove zip file
 rm ~/.icons/Dracula.zip
 
+# remane default config files 
+mv ~/.bashrc ~/.bashrc.default
+mv ~/.config/dunst/dunstrc ~/.config/dunst/dunstrc.default
+mv ~/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini.default
+mv ~/.config/vifm/vifmrc ~/.config/vifm/vifmrc.default
+mv ~/.i3/config ~/.i3/config.default
+
 # clone tmux plugin package manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
