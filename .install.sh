@@ -11,9 +11,12 @@ pamac install
 	steam
 	ttf-font-awesome 
 	unzip
+	feh
 	# flatpaks?
 	# teams?
 	# spotify?
+
+pamac remove nitrogen
 
 ###############
 # SET GTK THEME
