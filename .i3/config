@@ -199,9 +199,9 @@ bindcode Mod4+Shift+19 move container to workspace number $ws10
 ############
 
 bindsym $mod+Shift+End mode "$mode_system"
-set $mode_system (l)ock, (Shift+l)ogout, (s)uspend, (r)eboot, (Shift+s)hutdown
+set $mode_system (l)ock, (Shift+l)ogout, (s)uspend & lock, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id dm-tool lock && systemctl suspend, mode "default"
     bindsym Shift+l exec --no-startup-id i3-msg exit , mode "default"
     bindsym l exec --no-startup-id dm-tool lock, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
