@@ -3,14 +3,14 @@ pacman -Syu python alacritty tmux vifm code nautilus firefox rofi ttf-font-aweso
 	# anki 
 	# discord
 	# steam
-	# flatpaks?
-	# teams?
-	# spotify?
+	# flatpaks
+	# teams
+	# spotify
 
 pamac remove nitrogen
 
 ###############
-# SET GTK THEME
+# GET GTK THEME
 ###############
  
 # create themes dir
@@ -24,15 +24,15 @@ unzip /home/james/.themes/Dracula.zip -d /home/james/.themes
 # remove zip
 rm /home/james/.themes/Dracula.zip
 
+#rename theme to dracula
+mv /home/james/.themes/gtk-master /home/james/.themes/Dracula
+
 # make writable
 chmod 775 /home/james/.icons/Dracula
 
-#rename theme to dracula
-mv /home/james/.themes/gtk-master ~/.themes/Dracula
-
 
 ###############
-# SET ICON PACK
+# GET ICON PACK
 ###############
 
 # downloading dracula icon pack
