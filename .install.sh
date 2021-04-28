@@ -1,11 +1,23 @@
 #!/bin/bash
-pacman -Syu python alacritty tmux vifm code nautilus firefox rofi ttf-font-awesome unzip feh python-pip bitwarden
-	# anki 
-	# discord
-	# steam
-	# flatpaks
-	# teams
-	# spotify
+sudo pacman -Syu python/
+			alacritty/
+			tmux/
+			vifm/
+			code/
+			nautilus/
+			firefox/
+			rofi/
+			ttf-font-awesome/
+			unzip/
+			feh/
+			python-pip/
+			bitwarden/
+			# anki/
+			# discord/
+			# steam/
+			# flatpaks/
+			# teams/
+			# spotify/
 
 pamac remove nitrogen
 
@@ -46,12 +58,13 @@ rm /home/james/.icons/Dracula.zip
 # make writable
 chmod 775 /home/james/.icons/Dracula
 
-# remane default config files 
+# rename default config files 
 mv /home/james/.bashrc /home/james/.bashrc.default
+mv /home/james/.i3/config /home/james/.i3/config.default
+mv /home/james/.xinitrc /home/james/.xinitrc.default
 mv /home/james/.config/dunst/dunstrc /home/james/.config/dunst/dunstrc.default
 mv /home/james/.config/gtk-3.0/settings.ini /home/james/.config/gtk-3.0/settings.ini.default
 mv /home/james/.config/vifm/vifmrc /home/james/.config/vifm/vifmrc.default
-mv /home/james/.i3/config /home/james/.i3/config.default
 
 ############
 # SETUP TMUX

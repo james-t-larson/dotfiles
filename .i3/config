@@ -13,8 +13,8 @@ exec_always /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 exec --no-startup-id volumeicon
 bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
 
 # start icon handler
@@ -22,9 +22,6 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 # or pacman -S ttf-font-awesome
 # and run: sudo pip3 install i3-workspace-names-daemon
 exec_always --no-startup-id exec i3-workspace-names-daemon
-
-# switch Caps and Escape
-exec_always --no-startup-id setxkbmap -option caps:swapescape
 
 # set up lockscreen
 # https://github.com/pavanjadhaw/betterlockscreen
@@ -39,9 +36,6 @@ exec_always --no-startup-id xfce4-power-manager
 # apply the wallpaper on start 
 exec_always feh --randomize --bg-fill ~/Pictures/Wallpapers/*
 
-# always start redshift
-#exec_always --no-startup-id redshift -l 54.6:25.2
-
 # enable autotiling, to get this to work on new install, run pip3 install autotiling
 exec_always --no-startup-id autotiling
 
@@ -55,7 +49,6 @@ font pango: monospace 10
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -69,8 +62,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 
 #bindsym XF86AudioRaiseVminusolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 #bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 ##################
 #GENERAL COMMANDS#

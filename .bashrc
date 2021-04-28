@@ -150,3 +150,7 @@ vifm()
     fi
     cd "$dst"
 }
+
+# swaps esc for caps
+xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+

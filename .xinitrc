@@ -63,7 +63,4 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec xmodmap -e 'clear Lock' #ensures you're not stuck in CAPS on mode
-exec xmodmap -e 'keycode 0x42=Escape' #remaps the keyboard so CAPS LOCK=ESC
-
 exec $(get_session "$1")
