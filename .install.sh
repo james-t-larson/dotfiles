@@ -1,23 +1,23 @@
 #!/bin/bash
-sudo pacman -Syu python/
-			alacritty/
-			tmux/
-			vifm/
-			code/
-			nautilus/
-			firefox/
-			rofi/
-			ttf-font-awesome/
-			unzip/
-			feh/
-			python-pip/
-			bitwarden/
-			# anki/
-			# discord/
-			# steam/
-			# flatpaks/
-			# teams/
-			# spotify/
+sudo pacman -Syu python\
+			alacritty\
+			tmux\
+			vifm\
+			code\
+			nautilus\
+			firefox\
+			rofi\
+			ttf-font-awesome\
+			unzip\
+			feh\
+			python-pip\
+			bitwarden\
+			# anki\
+			# discord\
+			# steam\
+			# flatpaks\
+			# teams\
+			# spotify\
 
 pamac remove nitrogen
 
