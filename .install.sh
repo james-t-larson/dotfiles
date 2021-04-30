@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo pacman -Syu python\
 			alacritty\
+			calibre\
 			tmux\
 			vifm\
 			code\
@@ -12,12 +13,16 @@ sudo pacman -Syu python\
 			feh\
 			python-pip\
 			bitwarden\
-			# anki\
-			# discord\
-			# steam\
-			# flatpaks\
-			# teams\
-			# spotify\
+			anki\
+			discord\
+			steam\
+			flatpaks\
+			teams\
+
+
+pamac build\
+		yadm\
+		spotify
 
 pamac remove nitrogen
 
@@ -87,8 +92,6 @@ pip install autotiling
 # GET DOTFILES
 ##############
 
-pamac build yadm
-
 yadm init
 
 # pull dotfiles down
@@ -99,4 +102,3 @@ yadm pull https://github.com/james-t-larson/dotfiles
 
 # restart i3 to make changes
 i3-msg restart
-
