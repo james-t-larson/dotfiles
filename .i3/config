@@ -17,18 +17,14 @@ exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
 #bindsym $mod+Ctrl+m exec pavucontrol
 
+# setting capslock to esc
+exec_always --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+
 # start icon handler
-# run: sudo apt install fonts-font-awesome
+# to install run: sudo apt install fonts-font-awesome
 # or pacman -S ttf-font-awesome
-# and run: sudo pip3 install i3-workspace-names-daemon
+# then run: sudo pip3 install i3-workspace-names-daemon
 exec_always --no-startup-id exec i3-workspace-names-daemon
-
-# set up lockscreen
-# https://github.com/pavanjadhaw/betterlockscreen
-#exec_always --no-startup-id xautolock -time 15 -detectsleep -locker "betterlockscreen --lock blur" 
-
-# always mount external drive
-# exec_always --no-startup-id sudo mount /dev/sda1 /media/b217a20e-cb29-46cd-851d-e00f27cf4c3/
 
 # start power managment
 exec_always --no-startup-id xfce4-power-manager
@@ -70,11 +66,11 @@ set $refresh_i3status killall -SIGUSR1 i3status
 ##################
 
 # For changing volume
-bindsym $mod+Shift+plus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym $mod+Shift+minus exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym $mod+Shift+plus exec "amixer -q sset Master,0 5+ unmute"
+bindsym $mod+Shift+minus exec "amixer -q sset Master,0 5- unmute"
 
 # mutting
-bindsym $mod+Shift+m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym $mod+Shift+M exec "amixer -q sset Master,0 toggle"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -102,7 +98,7 @@ bindsym $mod+Shift+s exec (setxkbmap -query | grep -q "layout:\s\+us") && setxkb
 
 # take a screen shot  -- add hour and minute taken
 # if you want to add a delay add the flag --delay 1 for one second
-bindsym Print exec scrot '%Y-%m-%d@%T.png' -e 'mv $f ~/Pictures/Screenshots/' 
+bindsym Print exec scrot '%Y-%m-%d@%T.png' -e 'mv $f ~/Pictures/Screenshots/' --delay 1
 # bindsym Print exec gnome-screenshot
 
 # reload the configuration file
@@ -175,7 +171,7 @@ bindcode Mod4+17 workspace number $ws8
 bindcode Mod4+18 workspace number $ws9
 bindcode Mod4+19 workspace number $ws10
 
-#move focused container to workspace
+#move focused window to workspace
 bindcode Mod4+Shift+10 move container to workspace number $ws1
 bindcode Mod4+Shift+11 move container to workspace number $ws2
 bindcode Mod4+Shift+12 move container to workspace number $ws3

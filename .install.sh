@@ -1,30 +1,37 @@
 #!/bin/bash
 sudo pacman -Syu python\
-			alacritty\
-			calibre\
-			tmux\
-			vifm\
-			code\
-			nautilus\
-			firefox\
-			rofi\
-			ttf-font-awesome\
-			unzip\
-			feh\
-			python-pip\
-			bitwarden\
-			anki\
-			discord\
-			steam\
-			flatpaks\
-			teams\
+	zathura\
+	zathura-pdf-mupdf\
+	alacritty\
+	calibre\
+	tmux\
+	vifm\
+	code\
+	nautilus\
+	firefox\
+	rofi\
+	ttf-font-awesome\
+	unzip\
+	feh\
+	python-pip\
+	bitwarden\
+	anki\
+	discord\
+	steam\
+	flatpaks\
+	teams\
+	libreoffice-still\
+	libreoffice-fresh-lt 
 
 
 pamac build\
-		yadm\
-		spotify
+	yadm\
+	spotify\
+	appimagelauncher
 
-pamac remove nitrogen
+pamac remove\
+	nitrogen\
+	palemoon-bin
 
 ###############
 # GET GTK THEME

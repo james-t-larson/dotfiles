@@ -14,9 +14,13 @@
     "MPlayer": "video-camera",
     "Anki": "language",
     "Evince": "file",
+    "Zathura": "file",
     "Microsoft Teams": "users",
     "Google-chrome": "at",
     "Wpsoffice": "sticky-note",
     "Bitwarden": "lock",
-    "Deluge-gtk": "tint"
+    "Deluge-gtk": "tint",
+    "freezer": "bullseye",
+    "Totem": "video-camera",
+    "Pamac": "shopping-basket"
 }
