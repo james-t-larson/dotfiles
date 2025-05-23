@@ -1,0 +1,66 @@
+set-option -g status-position top
+# set-option -sa terminal-overrides ",xterm-*:Tc"
+set -g mouse on
+
+# Key binding to reload the tmux.conf file
+bind r source-file '~/.config/tmux/.tmux.conf && display-message "Config reloaded!"'
+
+# Key binding to clean up (remove) unlisted plugins
+bind-key C run-shell '~/.tmux/plugins/tpm/bin/clean_plugins && tmux display-message "Plugins Cleaned!"'
+
+# Load the Tmux Plugin Manager (TPM)
+ set -g @tpm_plugins '          \
+   tmux-plugins/tpm             \
+   nordtheme/tmux               \
+   jabirali/tmux-tilish         \
+ '
+
+# Yank text from tmux to the system clipboard (uncomment to use)
+# 'tmux-yank' allows you to copy text in tmux panes directly to your system clipboard.
+# Uncomment this line to enable the plugin.
+# set -g @plugin 'tmux-plugins/tmux-yank'
+
+# Sensible default settings for tmux (uncomment to use)
+# 'tmux-sensible' provides a set of sensible tmux defaults (key bindings, window layouts, etc.).
+# Uncomment this line to apply these default settings.
+# set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Navigate between tmux panes and Vim seamlessly (uncomment to use)
+# 'vim-tmux-navigator' allows you to use Vim-style pane navigation (h, j, k, l keys) to move between tmux panes and Vim windows.
+# Uncomment this line to enable easy navigation between Vim and tmux.
+# set -g @plugin 'christoomey/vim-tmux-navigator'
+
+# Set the Nord color theme for tmux
+# This plugin applies the Nord theme to tmux, giving it a cool, blue-gray color scheme.
+# It makes the tmux interface visually consistent with the Nord theme across other applications.
+
+set -g base-index 1        # Pane indexing starts at 1
+set -g pane-base-index 1    # Window indexing starts at 1
+
+bind -n M-1 if-shell "tmux list-windows | grep -q '1:'" "select-window -t 1" "new-window -t 1"
+bind -n M-2 if-shell "tmux list-windows | grep -q '2:'" "select-window -t 2" "new-window -t 2"
+bind -n M-3 if-shell "tmux list-windows | grep -q '3:'" "select-window -t 3" "new-window -t 3"
+bind -n M-4 if-shell "tmux list-windows | grep -q '4:'" "select-window -t 4" "new-window -t 4"
+
+bind -n M-Enter split-window -h
+
+bind -n M-q if-shell "[ \"$(tmux display-message -p '#{window_panes}')\" -gt 1 ]" "kill-pane" "kill-window"
+
+# bind -n M-s choose-session
+bind M-s 'fzf-tmux -p 80%,60% --reverse --preview 'tmux capture-pane -pt {}' \
+  --header 'Sessions [Enter: switch, Ctrl-X: kill]' \
+  --bind 'enter:execute(tmux switch-client -t {})+abort' \
+  --bind 'ctrl-x:execute(tmux kill-session -t {})+reload(tmux list-sessions -F "#{session_name}")' \
+  < <(tmux list-sessions -F "#{session_name}")'
+
+bind -n M-l select-pane -R
+bind -n M-h select-pane -L
+
+set -g mode-keys vi
+
+# set -s command-alias[101] 'start=run-shell "sh ~/.tmux/tmux-start.sh ~/Projects/%1"'
+# set -s command-alias[101] 'start=command-prompt -p "Enter project name:" "run-shell \"sh ~/.tmux/tmux-start.sh ~/Projects/\"%1"'
+
+
+# Initialize TMUX plugin manager
+run '~/.tmux/plugins/tpm/tpm'
